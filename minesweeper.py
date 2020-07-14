@@ -256,7 +256,7 @@ class MinesweeperAI():
         for safe in new_safes:
             self.mark_safe(safe)
 
-        new_inf = []
+        inf = []
         prev_sentence = new_know
         for sentence in self.knowledge:                            #5
             if len(sentence.cells) == 0:
@@ -266,14 +266,14 @@ class MinesweeperAI():
                 break
 
             elif prev_sentence.cells <= sentence.cells:                                                     #Inference resolution
-                inf_cells = sentence.cells - prev_sentence.cells
-                inf_count = sentence.count - prev_sentence.count
+                ce = sentence.cells - prev_sentence.cells
+                co = sentence.count - prev_sentence.count
 
-                new_inf.append(Sentence(inf_cells, inf_count))
+                inf.append(Sentence(ce, co))
 
             prev_sentence = sentence
 
-        self.knowledge+=new_inf
+        self.knowledge+=inf
 
         print('Finished adding knowledge')
 
